@@ -40,8 +40,8 @@ public class DictionaryData {
 		} catch (IOException e) {
 			System.out.println("Something went wrong !!!");
 		}
-		
-		for (int x = 0; x < 300; x++) {
+		int x = 1;
+		while (wordMap.containsKey(x)) {
 			if (wordMap.containsKey(x)) {
 				System.out.println("Word of " + x + " letters:");
 				ArrayList<WordItem> wordItemList = wordMap.get(x);
@@ -49,6 +49,7 @@ public class DictionaryData {
 					System.out.println("\t" + word.getDisplayWord());
 				}
 			}
+			x++;
 		}
 	}
 
