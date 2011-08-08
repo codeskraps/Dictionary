@@ -1,56 +1,45 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 
 public class DictionaryData {
 
-	private static WordItem wordItem = null;
-	private static HashMap<Integer, ArrayList<WordItem>> wordMap = null;
-	
 	public static void main(String[] args) {
-
+		TernarySearchTree tree = new TernarySearchTree(new TernaryTreeNode('A', false));
+		
 		try {
 		    BufferedReader in = new BufferedReader(new FileReader("./dic/dictionary.txt"));
-		    wordMap = new HashMap<Integer, ArrayList<WordItem>>();
 		    
 		    String str = null;
-		    ArrayList<WordItem> wordItemList = null;
 		    
 		    while ((str = in.readLine()) != null) {
-		    	wordItem = new WordItem(str);
-		    	//System.out.println("ContainsKey: " + wordMap.containsKey(wordItem.getSearchWord().length()));
-		    	//System.out.println("ContainsValue: " + wordMap.containsValue(wordItem.getSearchWord().length()));
-		    	
-		    	
-		    	if (wordMap.containsKey(wordItem.getSearchWord().length())) {
-		    		wordItemList = wordMap.get(wordItem.getSearchWord().length());
-		    	} else {
-		    		wordItemList = new ArrayList<WordItem>();
-		    	}
-		    	wordItemList.add(wordItem);
-		    	wordMap.put(wordItem.getSearchWord().length(), wordItemList);
-		    	//har ch = (char) System.in.read();
+		    	tree.insert(str.toLowerCase());
 		    }
-		    
 		    in.close();
 		    
 		} catch (IOException e) {
 			System.out.println("Something went wrong !!!");
 		}
-		int x = 1;
-		while (wordMap.containsKey(x)) {
-			if (wordMap.containsKey(x)) {
-				System.out.println("Word of " + x + " letters:");
-				ArrayList<WordItem> wordItemList = wordMap.get(x);
-				for (WordItem word : wordItemList) {
-					System.out.println("\t" + word.getDisplayWord());
-				}
-			}
-			x++;
-		}
+			
+		if (tree.containsKey("abella")) System.out.println("abella is found in the tree");
+		else System.out.println("abella is not found");
+		
+		if (tree.containsKey("transport")) System.out.println("transport is found in the tree");
+		else System.out.println("transport is not found");
+		
+		if (tree.containsKey("zuau")) System.out.println("zuau is found in the tree");
+		else System.out.println("zuau is not found");
+		
+		if (tree.containsKey("creure")) System.out.println("creure is found in the tree");
+		else System.out.println("creure is not found");
+		
+		if (tree.containsKey("governar")) System.out.println("governar is found in the tree");
+		else System.out.println("governar is not found");
+		
+		if (tree.containsKey("carless")) System.out.println("carless is found in the tree");
+		else System.out.println("carless is not found");
+		
+		if (tree.containsKey("lliure")) System.out.println("lliure is found in the tree");
+		else System.out.println("lliure is not found");
 	}
-
 }
