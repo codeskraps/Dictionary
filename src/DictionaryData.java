@@ -8,20 +8,22 @@ public class DictionaryData {
 	public static void main(String[] args) throws IOException {
 		TernarySearchTree tree = new TernarySearchTree(new TernaryTreeNode('A', false));
 
-		try {
-			BufferedReader in = new BufferedReader(new FileReader(
-					"./dic/dictionary.txt"));
-
-			String str = null;
-
-			while ((str = in.readLine()) != null) {
-				tree.insert(str.toLowerCase());
-			}
-			in.close();
-
-		} catch (IOException e) {
-			System.out.println("Something went wrong !!!");
-		}
+		GetTreeDictionary dic = new GetTreeDictionary();
+		
+//		try {
+//			BufferedReader in = new BufferedReader(new FileReader(
+//					"./dic/dictionary.txt"));
+//
+//			String str = null;
+//
+//			while ((str = in.readLine()) != null) {
+//				tree.insert(str.toLowerCase());
+//			}
+//			in.close();
+//
+//		} catch (IOException e) {
+//			System.out.println("Something went wrong !!!");
+//		}
 
 		String string = "";
 		InputStreamReader input = new InputStreamReader(System.in);
@@ -31,11 +33,16 @@ public class DictionaryData {
 			System.out.print("Please enter a word: ");
 	
 			string = reader.readLine();
-	
+			for(String w : dic.getStringArr(string.length())) {
+				System.out.println("DBG -  adding " + w);
+				tree.insert(w.toLowerCase());
+			}
+					
 			if (tree.containsKey(string))
 				System.out.print("\n\t** " + string + " ** is found in the dictionary\n\n");
 			else
 				System.out.print("\n\t** " + string + " ** is NOT found in the dictionary\n\n");
+			
 		
 		}while (string != "123");
 	}
